@@ -1,0 +1,34 @@
+{
+    "name": "afashio/articles",
+    "description": "PushCMS Articles module",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "afashio",
+            "email": "push.webstudio@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "~2.0",
+        "klisl/yii2-languages": "^2.8",
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "creocoder/yii2-translateable": "^1.0",
+        "notgosu/yii2-meta-tag-module": "dev-single_language_widget",
+        "costa-rico/yii2-images": "1.2.0",
+        "vova07/yii2-imperavi-widget": "^2.0",
+        "kartik-v/yii2-widget-fileinput": "^1.0",
+        "afashio/push-helpers": "dev-master",
+        "afashio/push-language": "dev-master"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "afashio\\articles\\": "src"
+        }
+    }
+}
