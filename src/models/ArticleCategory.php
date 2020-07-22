@@ -1,10 +1,10 @@
 <?php
 
-namespace common\models;
+namespace afashio\articles\models;
 
-use common\models\query\AbstractCategoryQuery;
-use common\traits\BasicStatusTrait;
-use common\traits\ModelTranslationTrait;
+use afashio\articles\queries\AbstractCategoryQuery;
+use afashio\pushHelpers\traits\BasicStatusTrait;
+use afashio\pushHelpers\traits\ModelTranslationTrait;
 use creocoder\translateable\TranslateableBehavior;
 use notgosu\yii2\modules\metaTag\components\MetaTagBehavior;
 use paulzi\nestedsets\NestedSetsBehavior;
