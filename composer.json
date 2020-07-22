@@ -1,5 +1,5 @@
 {
-    "name": "afashio/articles",
+    "name": "afashio/push-articles",
     "description": "PushCMS Articles module",
     "type": "package",
     "license": "MIT",
