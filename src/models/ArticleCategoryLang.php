@@ -5,7 +5,7 @@ namespace afashio\articles\models;
 use Yii;
 
 /**
- * This is the model class for table "service_category_lang".
+ * This is the model class for table "article_category_lang".
  *
  * @property int             $id
  * @property string          $language

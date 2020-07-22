@@ -3,6 +3,7 @@
 namespace afashio\articles\models;
 
 use afashio\articles\queries\AbstractCategoryQuery;
+use afashio\language\models\Language;
 use afashio\pushHelpers\traits\BasicStatusTrait;
 use afashio\pushHelpers\traits\ModelTranslationTrait;
 use creocoder\translateable\TranslateableBehavior;
@@ -28,7 +29,7 @@ use rico\yii2images\behaviors\ImageBehave;
  * @property string                $nameAndStatus
  * @property ArticleCategoryLang[] $serviceCategoryLangs
  *
- * @mixin \common\models\ArticleCategoryLang
+ * @mixin \afashio\articles\models\ArticleCategoryLang
  * @mixin TranslateableBehavior
  * @mixin NestedSetsBehavior
  * @mixin ImageBehave
@@ -41,7 +42,7 @@ class ArticleCategory extends \yii\db\ActiveRecord
     public $imageFiles;
 
     /**
-     * @return \common\models\query\AbstractCategoryQuery|\yii\db\ActiveQuery
+     * @return AbstractCategoryQuery|\yii\db\ActiveQuery
      */
     public static function find()
     {

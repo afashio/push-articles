@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\controllers;
+namespace afashio\articles\backend\controllers;
 
 use Yii;
-use common\models\ArticleCategory;
-use common\models\search\ArticleCategorySearch;
+use afashio\articles\models\ArticleCategory;
+use afashio\articles\search\ArticleCategorySearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\search;
+namespace afashio\articles\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Article;
+use afashio\articles\models\Article;
 
 /**
  * ArticleSearch represents the model behind the search form of `common\models\Article`.

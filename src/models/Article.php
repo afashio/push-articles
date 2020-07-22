@@ -14,18 +14,18 @@ use yii\db\Expression;
 /**
  * This is the model class for table "article".
  *
- * @property int                 $id
- * @property int                 $order
- * @property string              $slug
- * @property int                 $status
- * @property string              $created_at
- * @property string              $text
- * @property string              $title
- * @property string              $updated_at
- * @property \common\models\ArticleCategory $articleCategory
- * @property integer             $article_category_id
- * @property array               $translations
- * @mixin \common\models\ArticleLang
+ * @property int                                      $id
+ * @property int                                      $order
+ * @property string                                   $slug
+ * @property int                                      $status
+ * @property string                                   $created_at
+ * @property string                                   $text
+ * @property string                                   $title
+ * @property string                                   $updated_at
+ * @property \afashio\articles\models\ArticleCategory $articleCategory
+ * @property integer                                  $article_category_id
+ * @property array                                    $translations
+ * @mixin \afashio\articles\models\ArticleLang
  * @mixin \rico\yii2images\behaviors\ImageBehave
  */
 class Article extends \yii\db\ActiveRecord
@@ -53,6 +53,16 @@ class Article extends \yii\db\ActiveRecord
     public static function findBySlug($slug)
     {
         return self::find()->andWhere(['slug' => $slug])->andWhere(['status' => self::getActiveStatus()])->one();
+    }
+
+    public static function getImportantForOwners()
+    {
+        return self::find()->andWhere(
+            [
+                'article_category_id' => 4,
+                'status' => self::getActiveStatus(),
+            ]
+        )->limit(3)->orderBy(['id' => SORT_DESC])->all();
     }
 
     public function behaviors()
@@ -130,15 +140,5 @@ class Article extends \yii\db\ActiveRecord
     public function getArticleCategory()
     {
         return $this->hasOne(ArticleCategory::class, ['id', 'article_category_id']);
-    }
-
-    public static function getImportantForOwners()
-    {
-        return self::find()->andWhere(
-            [
-                'article_category_id' => 4,
-                'status' => self::getActiveStatus(),
-            ]
-        )->limit(3)->orderBy(['id' => SORT_DESC])->all();
     }
 }
