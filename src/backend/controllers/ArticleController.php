@@ -1,11 +1,12 @@
 <?php
 
-namespace backend\controllers;
+namespace afashio\articles\backend\controllers;
 
 use Yii;
-use common\models\Article;
-use common\models\search\ArticleSearch;
+use afashio\articles\models\Article;
+use afashio\articles\search\ArticleSearch;
 use backend\controllers\SiteController;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -14,6 +15,40 @@ use yii\filters\VerbFilter;
  */
 class ArticleController extends SiteController
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors(): array
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['login'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['POST'],
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
 
     /**
      * Lists all Article models.
@@ -32,8 +67,11 @@ class ArticleController extends SiteController
 
     /**
      * Displays a single Article model.
+     *
      * @param integer $id
+     *
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -64,8 +102,11 @@ class ArticleController extends SiteController
     /**
      * Updates an existing Article model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
+     *
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -73,18 +114,23 @@ class ArticleController extends SiteController
 
         if ($model->saveModelWithImage('image')) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
      * Deletes an existing Article model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
+     *
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionDelete($id)
     {
@@ -104,8 +150,8 @@ class ArticleController extends SiteController
     {
         if (($model = Article::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
