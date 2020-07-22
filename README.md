@@ -1,4 +1,4 @@
 # push-articles
 
 - migration  
-`php yii migrate/up --migrationPath=@vendor/afashio/articles/migrations`
+`php yii migrate/up --migrationPath=@vendor/afashio/push-articles/src/migrations`
