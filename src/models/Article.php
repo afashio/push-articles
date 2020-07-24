@@ -105,7 +105,7 @@ class Article extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['slug'], 'string', 'max' => 50],
             [['slug'], 'unique'],
-            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 20],
         ];
     }
 
